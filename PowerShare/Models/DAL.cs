@@ -9,6 +9,11 @@ namespace PowerShare.Models
         private static string EditOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
         private static string ReadOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
 
+        internal static void GetAllDeviceByUserID()
+        {
+            
+        }
+
         internal static List<role> GetRoles()
         {
             throw new NotImplementedException();
