@@ -9,6 +9,11 @@ namespace PowerShare.Models
         private static string EditOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
         private static string ReadOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
 
+        internal static List<role> GetRoles()
+        {
+            throw new NotImplementedException();
+        }
+
         public static string _Pepper = "gLj23Epo084ioAnRfgoaHyskjasf";
         public static int _Stretches = 10000;
         private DAL()
@@ -34,6 +39,35 @@ namespace PowerShare.Models
                 Exception  s = ex;
             }
         }
+
+        internal static List<User> UserGetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static User UserGetByID(int? uid)
+        {
+            MySqlCommand comm = new MySqlCommand("sproc_UserByID");
+            User retObj = null;
+            try
+            {
+                comm.Parameters.AddWithValue("@" + User.db_ID, uid);
+                MySqlDataReader dr = GetDataReader(comm);
+
+                while (dr.Read())
+                {
+                    retObj = new User(dr);
+                }
+                comm.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                comm.Connection.Close();
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return retObj;
+        }
+
         public static int GetIntReader(MySqlCommand comm)
         {
             try
@@ -76,6 +110,12 @@ namespace PowerShare.Models
             }
             return retInt;
         }
+
+        internal static int UpdateUser(User u)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static int UpdateObject(MySqlCommand comm)
         {
             int retInt = 0;
@@ -121,6 +161,15 @@ namespace PowerShare.Models
             return retList;
         }
 
+        internal static int UpdateRole(role role)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static int AddRole(role role)
+        {
+            throw new NotImplementedException();
+        }
 
         public static MySqlDataReader GetDataReader(MySqlCommand comm)
         {
@@ -138,6 +187,9 @@ namespace PowerShare.Models
             }
         }
 
-
+        internal static int DeleteUserByID(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
