@@ -12939,11 +12939,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\paths\\Desktop\\Hackathon\\PowerShare\\PowerShare.csproj",
+      "projectUniqueName": "C:\\Users\\paths\\Desktop\\powerShare\\PowerShare\\PowerShare.csproj",
       "projectName": "PowerShare",
-      "projectPath": "C:\\Users\\paths\\Desktop\\Hackathon\\PowerShare\\PowerShare.csproj",
+      "projectPath": "C:\\Users\\paths\\Desktop\\powerShare\\PowerShare\\PowerShare.csproj",
       "packagesPath": "C:\\Users\\paths\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\paths\\Desktop\\Hackathon\\PowerShare\\obj\\",
+      "outputPath": "C:\\Users\\paths\\Desktop\\powerShare\\PowerShare\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
