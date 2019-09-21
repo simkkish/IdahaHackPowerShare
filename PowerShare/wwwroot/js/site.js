@@ -17,11 +17,15 @@ google.maps.event.addDomListener(window, "load");
 
 var searchKeyWord = document.getElementById("keyword");
 var searchButton = document.getElementById("search");
+var toogleButton = document.getElementsByClassName("switch");
 
 var searchBox = new google.maps.places.SearchBox(searchKeyWord);
 
 map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchKeyWord);
 map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchButton);
+
+map.controls[google.maps.ControlPosition.TOP_CENTER].push(toogleButton);
+
 
 searchButton.onclick = function () {
     google.maps.event.trigger(searchKeyWord, 'focus');
@@ -31,6 +35,30 @@ searchButton.onclick = function () {
 var markers = [];
 // Listen for the event fired when the user selects a prediction and retrieve
 // more details for that place.
+
+var switchStatus = false;
+$("#togBtn").on('change', function () {
+    if ($(this).is(':checked')) {
+        switchStatus = $(this).is(':checked');
+        //alert(switchStatus);// To verify
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setVisible(true);
+        }
+            
+            
+
+       
+
+    }
+    else {
+        switchStatus = $(this).is(':checked');
+        
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setVisible(false);
+        }
+       
+    }
+});
 searchBox.addListener('places_changed', function () {
     var places = searchBox.getPlaces();
 
