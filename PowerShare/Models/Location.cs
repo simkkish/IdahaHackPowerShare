@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PowerShare.Models
 {
-    public class Users
+    public class Location
     {
     }
 }
