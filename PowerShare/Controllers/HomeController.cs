@@ -14,9 +14,18 @@ namespace PowerShare.Controllers
         {
             return View();
         }
+        public IActionResult Team()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+        public IActionResult Connect()
+        {
+            DAL.GetAllUsers();
             return View();
         }
 
