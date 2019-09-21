@@ -12,7 +12,6 @@ namespace PowerShare.Models
             : base(options)
         {
         }
-
         public DbSet<PowerShare.Models.User> User { get; set; }
     }
 }
