@@ -74,6 +74,10 @@ ul li{
     width:200px;
 }
 
+#device{
+    margin-left: 15%;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
