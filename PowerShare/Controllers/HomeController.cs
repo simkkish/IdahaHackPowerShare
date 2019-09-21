@@ -23,6 +23,11 @@ namespace PowerShare.Controllers
         {
             return View();
         }
+        public IActionResult Connect()
+        {
+            DAL.GetAllUsers();
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
