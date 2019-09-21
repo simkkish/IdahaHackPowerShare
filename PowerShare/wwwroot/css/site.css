@@ -21,12 +21,17 @@ html {
 .slogan{
     color: #4B371C;
 }
-
+.Footerlast{
+    background-color:white;
+}
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
+}
+.container{
+    color:orange;
 }
 
 .box-shadow {
@@ -146,3 +151,6 @@ input:checked + .slider:before {
     .slider.round:before {
         border-radius: 50%;
     }
+.container  text-black-50{
+    color:orange
+}
