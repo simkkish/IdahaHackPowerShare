@@ -22,16 +22,7 @@ namespace PowerShare.Controllers
         #region Login
         public ActionResult Login(string returnUrl)
         {
-            var s = TempData["UserAddSuccess"];
-            var e = TempData["UserAddError"];
-
-
-            if (s != null)
-                ViewData["UserAddSuccess"] = s;
-            else if (e != null)
-                ViewData["UserAddError"] = e;
-
-            return RedirectToAction("Index", "Home");
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -41,13 +32,8 @@ namespace PowerShare.Controllers
             if (loggedIn != null)
             {
                 CurrentUser = loggedIn; //Sets the session for user from base controller
-                HttpContext.Session.SetString("UserName", loggedIn.FirstName);
+                HttpContext.Session.SetString("UserName", loggedIn.UserName);
                 HttpContext.Session.SetInt32("UserID", loggedIn.ID); //Sets userid in the session
-                HttpContext.Session.SetString("UserRole", (loggedIn.Role.IsAdmin == true) ? "True" : "False");
-                if (loggedIn.Role.IsAdmin)
-                {
-                    return RedirectToAction("Index", "Admin"); //Redirects to the admin dashboard
-                }
                 return RedirectToAction("Dashboard");
             }
             ViewBag.Error = "Invalid Username and/or Password";

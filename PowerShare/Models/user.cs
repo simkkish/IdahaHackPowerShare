@@ -16,7 +16,7 @@ namespace PowerShare.Models
         protected string _userName;
         protected string _lastName;
         protected string _emailAddress;
-        protected long _PhoneNumber;
+        protected int _phoneNumber;
         protected int _karmaPoints;
         protected string _password;
         protected string _salt;
@@ -33,7 +33,7 @@ namespace PowerShare.Models
         internal const string db_KarmaPoint = "karmapoints";
         internal const string db_Role = "roleID";
         internal const string db_Password = "password";
-        internal const string db_DateCreated = "DateCreated";
+        internal const string db_PhoneNumber = "phoneNumber";
         internal const string db_DateModified = "DateModified";
         internal const string db_DateDeleted = "DateDeleted";
         #endregion
@@ -64,7 +64,11 @@ namespace PowerShare.Models
             get { return _karmaPoints; }
             set { _karmaPoints = value; }
         }
-
+        public int phoneNumber
+        {
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; }
+        }
         public string UserName {
             get { return _userName; }
             set { _userName = value; }
@@ -79,9 +83,9 @@ namespace PowerShare.Models
             get { return _emailAddress; }
             set { _emailAddress = value; }
         }
-        public long PhoneNumber {
-            get { return _PhoneNumber; }
-            set { _PhoneNumber = value; }
+        public int PhoneNumber {
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; }
         }
 
         public int KarmaPoints {
@@ -118,6 +122,7 @@ namespace PowerShare.Models
             _password = dr.GetString(db_Password);
             _salt = dr.GetString(db_Salt);
             _karmaPoints = dr.GetInt32(db_KarmaPoint);
+            _phoneNumber = dr.GetInt32(db_PhoneNumber);
         }
 
         public override string ToString()
