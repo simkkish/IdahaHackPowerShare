@@ -1,4 +1,6 @@
-﻿@{
+﻿@using PowerShare.Models
+@model LoginModel
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -12,31 +14,39 @@
         </div>
         <div class="col-6">
             <div class="loginForm">
-                <form action="" method="post">
+                <form asp-action="AddUser" asp-controller="Account" method="post">
                     <ul>
                         <li>
                             <header><h1 class="display-3">Sign Up!</h1></header>
                         </li>
                         <li>
-                            <input type="text" class="form-control-lg" name="fName" placeholder="First Name" />
-                        </li>
-                            <input type="text" class="form-control-lg" name="mName" placeholder="Middle Name" />
-                        <li>
+                            <label>First Name</label><br />
+                            <input type="text" class="form-control-lg" id="FirstName " name="FirstName" placeholder="" />
                         </li>
                         <li>
-                            <input type="text" class="form-control-lg" name="lName" placeholder="Last Name" />
+                            <label>Last Name</label><br />
+                            <input type="text" class="form-control-lg" id="LastName" name="LastName" placeholder="" />
                         </li>
                         <li>
-                            <input type="email" class="form-control-lg" name="email" placeholder="Email" />
+                            <label>UserName</label><br />
+                            <input type="text" class="form-control-lg" id="UserName" name="UserName" placeholder="" />
+                        </li>
+
+                        <li>
+                            <label>Email</label><br />
+                            <input type="email" class="form-control-lg" id="EmailAddress" name="EmailAddress" placeholder="" />
                         </li>
                         <li>
-                            <input type="number" class="form-control-lg" name="phoneNumber" placeholder="Phone Number" />
+                            <label>Phone Number</label><br />
+                            <input type="number" class="form-control-lg" id="PhoneNumber" name="PhoneNumber" placeholder="" />
                         </li>
                         <li>
-                            <input type="password" class="form-control-lg" name="password" placeholder="Password" />
+                            <label>Password</label><br />
+                            <input type="password" class="form-control-lg" id="Password" name="Password" placeholder="" />
                         </li>
                         <li>
-                            <input type="password" class="form-control-lg" name="password" placeholder="Verify Password" />
+                            <label>Verify Password</label><br />
+                            <input type="password" class="form-control-lg" id="ConfirmPassword" name="ConfirmPassword" placeholder="" />
                         </li>
                         <li>
                             <button type="submit" class="btn btn-primary">Sign Up</button>
@@ -46,5 +56,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
