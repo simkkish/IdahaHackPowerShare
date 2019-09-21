@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PowerShare.Models;
 
 namespace PowerShare.Controllers
 {
-    public class DashboardController : Controller
+    public class DeviceController : Controller
     {
         public IActionResult Index()
         {
+            List<Device> devices = null;
+            DAL.GetAllDeviceByUserID();
             return View();
         }
 
-        public IActionResult Map()
-        {
-            return View();
-        }
     }
 }

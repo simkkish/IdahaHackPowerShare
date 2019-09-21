@@ -9,6 +9,11 @@ namespace PowerShare.Models
         private static string EditOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
         private static string ReadOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
 
+        internal static void GetAllDeviceByUserID()
+        {
+            
+        }
+
         internal static List<role> GetRoles()
         {
             throw new NotImplementedException();
@@ -39,9 +44,33 @@ namespace PowerShare.Models
             }
         }
 
-        internal static User GetUser(string userName, string passWord)
+        internal static User GetUser(string userName, string password)
         {
-            throw new NotImplementedException();
+            MySqlCommand comm = new MySqlCommand("sproc_UserGetByUserName");
+            User retObj = null;
+            try
+            {
+                comm.Parameters.AddWithValue("@" + User.db_UserName, userName);
+                MySqlDataReader dr = GetDataReader(comm);
+                while (dr.Read())
+                {
+                    retObj = new User(dr);
+                }
+                comm.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                comm.Connection.Close();
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            if (retObj != null)
+            {
+                if (!Tools.Hasher.IsValid(password, retObj.Salt, _Pepper, _Stretches, retObj.Password))
+                {
+                    retObj = null;
+                }
+            }
+            return retObj;
         }
 
         internal static List<User> UserGetAll()
@@ -126,11 +155,11 @@ namespace PowerShare.Models
                 obj.Password = newPass;
                 // now set object to Database.
                 comm.Parameters.AddWithValue("@" + User.db_FirstName, obj.FirstName);
-                comm.Parameters.AddWithValue("@" + User.db_UserName, obj.UserName);
+                comm.Parameters.AddWithValue("@" + User.db_UserName, obj.UserName); 
                 comm.Parameters.AddWithValue("@" + User.db_LastName, obj.LastName);
                 comm.Parameters.AddWithValue("@" + User.db_EmailAddress, obj.EmailAddress);
-                comm.Parameters.AddWithValue("@" + User.db_Password, obj.Password);
                 comm.Parameters.AddWithValue("@" + User.db_KarmaPoint, obj.KarmaPoint);
+                comm.Parameters.AddWithValue("@" + User.db_Password, obj.Password);
                 comm.Parameters.AddWithValue("@" + User.db_Salt, obj.Salt);
                 return AddObject(comm, "@" + User.db_ID);
             }

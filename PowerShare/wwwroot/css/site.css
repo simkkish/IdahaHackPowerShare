@@ -18,6 +18,10 @@ html {
   }
 }
 
+.slogan{
+    color: #4B371C;
+}
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
@@ -42,8 +46,14 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    color: #3F301D;
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    background-size: inherit;
+}
+
+.loginForm{
+    margin-left: 15%;
 }
 
 .loginForm ul {
