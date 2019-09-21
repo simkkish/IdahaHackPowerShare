@@ -35,7 +35,6 @@ namespace PowerShare.Tools
                 stretches,
                 GetBase64NumberLength(numberOfChars)
                 );
-
             return Convert.ToBase64String(myBytes).Substring(0, numberOfChars);
 
         }
@@ -63,15 +62,7 @@ namespace PowerShare.Tools
         /// <returns></returns>
         public static bool IsValid(string passToCheck, string salt, string pepper, int stretches, string hashToCompare)
         {
-            string hash = (Get(passToCheck, salt, pepper, stretches, hashToCompare.Length));
-
-
-
-            if (hash == hashToCompare)
-                return true;
-            else
-                return false;
-            //return Get(passToCheck, salt, pepper, stretches, hashToCompare.Length) == hashToCompare;
+            return Get(passToCheck, salt, pepper, stretches, hashToCompare.Length) == hashToCompare;
         }
         /// <summary>
         /// Generate a new salt
