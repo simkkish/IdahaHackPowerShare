@@ -18,11 +18,12 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    @using Microsoft.AspNetCore.Http;
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -33,15 +34,24 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Map">Dashboard</a>
-                        </li>
+
+                        @if (@Context.Session.Get("UserName") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Map">Dashboard</a>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Team">Team</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
@@ -50,33 +60,44 @@
                         </li>
                     </ul>
                 </div>
-                <div class="topnav">
-                    <div class="login-container">
-                        <form action="/action_page.php">
-                            <input type="text" placeholder="Username" name="username">
-                            <input type="text" placeholder="Password" name="psw">
-                            <button type="submit">Login</button>
-                        </form>
+
+                @if (@Context.Session.Get("UserName") == null)
+                {
+                    <div class="topnav">
+                        <div class="login-container">
+                            <form asp-action="Login" asp-controller="Account">
+                                <input type="text" placeholder="Username" id="Username" name="username">
+                                <input type="password" placeholder="Password" id="Password" name="password">
+                                <button type="submit">Login</button>
+                            </form>
+                        </div>
                     </div>
+                }
+                else
+                {
+                    <form asp-action="Logout" asp-controller="Account">
+                        <button>LogOut</button>
+                        </form>
+                        }
+
                 </div>
-            </div>
         </nav>
     </header>
     <div class="container-fluid">
         @RenderBody()
     </div>
-
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - PowerShare - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div class="Footerlast">
+        <footer class="border-dark card-footer text-muted">
+            <div class="container text-black-50">
+                &copy; 2019 - PowerShare - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
