@@ -11,9 +11,6 @@ namespace PowerShare.Models
         protected long _PhoneNumber;
         protected int _karmaPoints;
         protected string _password;
-
-
-
         public user()
         {
 
