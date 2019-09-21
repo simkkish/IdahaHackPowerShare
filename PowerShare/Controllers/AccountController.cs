@@ -34,7 +34,7 @@ namespace PowerShare.Controllers
                 CurrentUser = loggedIn; //Sets the session for user from base controller
                 HttpContext.Session.SetString("UserName", loggedIn.UserName);
                 HttpContext.Session.SetInt32("UserID", loggedIn.ID); //Sets userid in the session
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("Map", "Home");
             }
             ViewBag.Error = "Invalid Username and/or Password";
             ViewBag.User = userName;
