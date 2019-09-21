@@ -12,53 +12,42 @@
                 <p><span class="slogan">Charging the world!</span></p>
             </div>
         </div>
+        <div class="col-6">
+            <div class="loginForm">
+                <form asp-action="AddUser" asp-controller="Account" method="post">
+                    <ul>
+                        <li>
+                            <header><h1 class="display-3">Sign Up!</h1></header>
+                        </li>
+                        <li>
+                            <input type="text" class="form-control-lg" id="FirstName " name="FirstName" placeholder="First Name" />
+                        </li>
+                        <li>
+                            <input type="text" class="form-control-lg" id="LastName" name="LastName" placeholder="Last Name" />
+                        </li>
+                        <li>
+                            <input type="text" class="form-control-lg" id="UserName" name="UserName" placeholder="UserName" />
+                        </li>
 
-        <div class="custom-control-inline">
-            <form  class="form" asp-action="AddUser" asp-controller="Account" method="post">
-                <h1>Sign Up</h1>
-                <div class="form-group">
-                    <input type="text" placeholder=" " name="firstName" id="FirstName" required>
-                    <label >First Name</label>
-
-                </div>
-
-                <div class="form-group">
-                    <input type="text" placeholder=" " name="lastName" id="LastName" required>
-                    <label >Last Name</label>
-
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder=" " name="emailAddress" id="EmailAddress" required>
-                    <label >Email</label>
-
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder=" " name="userName"id="UserName" required>
-                    <label >User Name</label>
-
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder=" " name="phoneNumber"id="PhoneNumber" required>
-                    <label >PhoneNumber</label>
-
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder=" " id="Password" name="password" required>
-                    <label>Password</label>
-                    
-                </div>
-
-                <div class="form-group">
-                    <input type="password" placeholder=" " name="password" id="ConfirmPassword" required>
-                    <label for="confirm">Confirm</label>
-
-                </div>
-                <input type="submit" value="Sign Up">
-
-            </form>
+                        <li>
+                            <input type="email" class="form-control-lg" id="EmailAddress" name="EmailAddress" placeholder="Email" />
+                        </li>
+                        <li>
+                            <input type="number" class="form-control-lg" id="PhoneNumber" name="PhoneNumber" placeholder="Phone Number" />
+                        </li>
+                        <li>
+                            <input type="password" class="form-control-lg" id="Password" name="Password" placeholder="Password" />
+                        </li>
+                        <li>
+                            <input type="password" class="form-control-lg" id="ConfirmPassword" name="ConfirmPassword" placeholder="Verify Password" />
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
-
-
     </div>
 
 </div>
