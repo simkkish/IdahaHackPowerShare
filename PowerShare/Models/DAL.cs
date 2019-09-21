@@ -9,7 +9,7 @@ namespace PowerShare.Models
 {
     static class DAL
     {
-        private static string _ConnectionString = null;
+        private static string _ConnectionString = "server = localhost; user id = root; persistsecurityinfo=True;database=powershare";
 
         private static string ConnectionString {
             get {
