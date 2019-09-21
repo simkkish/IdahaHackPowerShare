@@ -45,7 +45,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">User</a>
+                        </li>
                     </ul>
+                </div>
+                <div class="topnav">
+                    <div class="login-container">
+                        <form action="/action_page.php">
+                            <input type="text" placeholder="Username" name="username">
+                            <input type="text" placeholder="Password" name="psw">
+                            <button type="submit">Login</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -53,6 +65,7 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">

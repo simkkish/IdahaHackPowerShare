@@ -1,0 +1,43 @@
+﻿@model User 
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Index</h2>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<span class="alert">@ViewBag.Message</span>
+<div class="panel panel-primary filterable">
+    <div class="panel-heading">
+        <h3 class="panel-title">Users</h3>
+        <div class="pull-right">
+            <button class="btn btn-default btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="filters">
+                <th><span placeholder="ID">ID</span></th>
+                <th><span placeholder="Email">Email</span></th>
+            </tr>
+        </thead>
+        <tbody id="UserTable">
+
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => Model.ID)</td>
+                        <td>@Html.DisplayFor(modelItem => Model.EmailAddress)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@Model.ID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>Disabled Users</td>
+                </tr>
+              
+        </tbody>
+    </table>
+</div>
