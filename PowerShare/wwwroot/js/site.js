@@ -41,9 +41,9 @@ $("#togBtn").on('change', function () {
     if ($(this).is(':checked')) {
         switchStatus = $(this).is(':checked');
         //alert(switchStatus);// To verify
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setVisible(true);
-        }
+        
+            markers.setVisible(true);
+        
             
             
 
@@ -53,9 +53,9 @@ $("#togBtn").on('change', function () {
     else {
         switchStatus = $(this).is(':checked');
         
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setVisible(false);
-        }
+       
+            markers.setVisible(false);
+        
        
     }
 });

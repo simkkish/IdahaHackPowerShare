@@ -8,7 +8,7 @@ using PowerShare.Models;
 
 namespace PowerShare.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {
@@ -25,7 +25,16 @@ namespace PowerShare.Controllers
 
         public IActionResult Map()
         {
-            return View();
+            User loggedIn = CurrentUser;
+            if(CurrentUser != null)
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Error"] = "Status Code 403. No authorization.";
+                return RedirectToAction("Index");
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

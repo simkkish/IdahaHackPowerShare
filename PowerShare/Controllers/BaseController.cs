@@ -48,14 +48,14 @@ namespace PowerShare.Controllers
             get
             {
                 User u = Get<User>("CurrentUser");
-                if (u == null) u = new User()
-                {
-                    FirstName = "Anony",
-                    Role = new role()
-                    {
-                        Name = "Anonymous",
-                    }
-                };
+                //if (u == null) u = new User()
+                //{
+                //    FirstName = "Anony",
+                //    Role = new role()
+                //    {
+                //        Name = "Anonymous",
+                //    }
+                //};
                 return u;
             }
             set
