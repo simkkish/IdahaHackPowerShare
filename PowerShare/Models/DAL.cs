@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Text;
 
 namespace PowerShare.Models
 {
@@ -27,42 +29,6 @@ namespace PowerShare.Models
 
         }
 
-        //public static List<Employee> GetEmployee()
-        //{
-        //    List<Employee> em = new List<Employee>();
-        //    SqlConnection conn = null;
-
-        //    try
-        //    {
-        //        conn = new SqlConnection(ConnectionString);
-        //        conn.Open();
-        //        SqlCommand comm = new SqlCommand("SEELCT * From Employees");
-        //        comm.Connection = conn;
-        //        SqlDataReader dr = comm.ExecuteReader();
-        //        while (dr.Read())
-        //        {
-        //            Employee e = new Employee();
-        //            e.ID = (int)dr["EmployeeID"];
-        //            e.Number = (int)dr["Number"];
-        //            e.FirstName = (string)dr["FirstName"];
-        //            e.MiddleName = (string)dr["MiddleName"];
-        //            e.LastName = (string)dr["LastName"];
-
-        //            em.Add(e);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine(ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        if (conn != null) conn.Close();
-        //    }
-        //    return em;
-
-
-
-        //}
+        
     }
 }
