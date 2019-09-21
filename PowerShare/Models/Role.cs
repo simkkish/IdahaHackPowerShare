@@ -32,11 +32,7 @@ namespace PowerShare.Models
 
         #region Private Variables
         private string _Name;
-        private bool _IsAdmin;
         private PermissionSet _Users;
-        private PermissionSet _Role;
-        private PermissionSet _Group;
-        private PermissionSet _Assignment;
         #endregion
 
         #region public Properites
@@ -59,24 +55,6 @@ namespace PowerShare.Models
         }
 
         /// <summary>
-        /// Gets or sets the IsAdmin for this PeerVal.Role object.
-        /// </summary>
-        /// <remarks></remarks>
-
-        [Required]
-        public bool IsAdmin
-        {
-            get
-            {
-                return _IsAdmin;
-            }
-            set
-            {
-                _IsAdmin = value;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the Users for this PeerVal.Role object.
         /// </summary>
         /// <remarks></remarks>
@@ -94,57 +72,7 @@ namespace PowerShare.Models
                 _Users = value;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the Role for this Classweb.Role object.
-        /// </summary>
-        /// <remarks></remarks>
-        [Required]
-        [Display(Name = "Roles Permissionset")]
-        public PermissionSet Roles
-        {
-            get
-            {
-                return _Role;
-            }
-            set
-            {
-                _Role = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the Assignment for this Classweb.Role object.
-        /// </summary>
-        [Required]
-        [Display(Name = "Assignment Permissionset")]
-        public PermissionSet Assignment
-        {
-            get
-            {
-                return _Assignment;
-            }
-            set
-            {
-                _Assignment = value;
-            }
-        }
-        [Required]
-        [Display(Name = "Group Permissionset")]
-        public PermissionSet Group
-        {
-            get
-            {
-                return _Group;
-            }
-            set
-            {
-                _Group = value;
-            }
-        }
         #endregion
-
-
 
         #region Public Functions
 
@@ -183,11 +111,7 @@ namespace PowerShare.Models
         {
             _ID = dr.GetInt32(db_ID);
             _Name = dr.GetString(db_Name);
-            _IsAdmin = dr.GetBoolean(db_IsAdmin);
             _Users = new PermissionSet((byte)dr.GetUInt64(db_Users));
-            _Role = new PermissionSet((byte)dr.GetUInt64(db_Role));
-            _Assignment = new PermissionSet((byte)dr.GetUInt64(db_Assignment));
-            _Group = new PermissionSet((byte)dr.GetUInt64(db_Group));
         }
         #endregion
     }

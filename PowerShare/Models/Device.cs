@@ -9,13 +9,15 @@ namespace PowerShare.Models
     public class Device:DatabaseRecord
     {
         protected int _userID;
+        protected int _deviceID;
         protected string _deviceType;
         protected string _deviceName;
         protected string _chargerType;
         protected string _description;
 
         #region Database string
-        internal const string db_ID = "userID";
+        internal const string db_deviceID = "deviceID";
+        internal const string db_userID = "userID";
         internal const string db_deviceType = "deviceType";
         internal const string db_deviceName = "deviceName";
         internal const string db_chargerType = "chargerType";
@@ -41,6 +43,17 @@ namespace PowerShare.Models
             set
             {
                 _userID = value;
+            }
+        }
+        public int DeviceID
+        {
+            get
+            {
+                return _deviceID;
+            }
+            set
+            {
+                _deviceID = value;
             }
         }
         public  string DeviceType
@@ -105,7 +118,8 @@ namespace PowerShare.Models
         }
         public override void Fill(MySql.Data.MySqlClient.MySqlDataReader dr)
         {
-            _userID = dr.GetInt32(db_ID);
+            _deviceID = dr.GetInt32(db_deviceID);
+            _userID = dr.GetInt32(db_userID);
             _deviceType = dr.GetString(db_deviceType);
             _deviceName = dr.GetString(db_deviceName);
             _chargerType = dr.GetString(db_chargerType);

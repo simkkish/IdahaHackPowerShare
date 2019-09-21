@@ -8,17 +8,114 @@ namespace PowerShare.Models
     {
         private static string EditOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
         private static string ReadOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
+        public static string _Pepper = "gLj23Epo084ioAnRfgoaHyskjasf";
 
-        internal static void GetAllDeviceByUserID()
+        internal static List<Device> GetAllDeviceByUserID(int uid)
         {
-            
+            List<Device> de = new List<Device>();
+            MySqlCommand comm = new MySqlCommand("sproc_GetDeviceListByUserID");
+            try
+            {
+                comm.Parameters.AddWithValue("@" + User.db_ID, uid);
+                MySqlDataReader dr = GetDataReader(comm);
+
+                while (dr.Read())
+                {
+                    Device d = new Device(dr);
+                    if (d != null)
+                    {
+                    de.Add(d);
+                    }
+                }
+                comm.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                comm.Connection.Close();
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return de;
+        }
+
+        internal static int AddDevice(Device obj)
+        {
+            if (obj == null) return -1;
+            MySqlCommand comm = new MySqlCommand("sproc_AddDevice");
+            try
+            {
+                comm.Parameters.AddWithValue("@" + Device.db_userID, obj.UserID);
+                comm.Parameters.AddWithValue("@" + Device.db_deviceType, obj.DeviceType);
+                comm.Parameters.AddWithValue("@" + Device.db_deviceName, obj.DeviceName);
+                comm.Parameters.AddWithValue("@" + Device.db_chargerType, obj.ChargerType);
+                comm.Parameters.AddWithValue("@" + Device.db_description, obj.Description);
+                return AddObject(comm, "@" + Device.db_deviceID);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return -1;
+        }
+
+        internal static object DeviceGetByID(int? id)
+        {
+            MySqlCommand comm = new MySqlCommand("sproc_DeviceByID");
+            Device retObj = null;
+            try
+            {
+                comm.Parameters.AddWithValue("@" + Device.db_deviceID, id);
+                MySqlDataReader dr = GetDataReader(comm);
+
+                while (dr.Read())
+                {
+                    retObj = new Device(dr);
+                }
+                comm.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                comm.Connection.Close();
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return retObj;
         }
 
         internal static List<role> GetRoles()
         {
             throw new NotImplementedException();
         }
-        public static string _Pepper = "gLj23Epo084ioAnRfgoaHyskjasf";
+
+        internal static int UpdateDevice(Device obj)
+        {
+            if (obj == null) return -1;
+            MySqlCommand comm = new MySqlCommand("sproc_DeviceUpdate");
+            try
+            {
+                comm.Parameters.AddWithValue("@" + Device.db_deviceID, obj.ID);
+                comm.Parameters.AddWithValue("@" + Device.db_userID, obj.UserID);
+                comm.Parameters.AddWithValue("@" + Device.db_deviceName, obj.DeviceName);
+                comm.Parameters.AddWithValue("@" + Device.db_deviceType, obj.DeviceType);
+                comm.Parameters.AddWithValue("@" + Device.db_chargerType, obj.ChargerType);
+                comm.Parameters.AddWithValue("@" + Device.db_description, obj.Description);
+                return UpdateObject(comm);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return -1;
+        }
+
+        internal static object RemoveDevice(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static object GetDevice(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public static int _Stretches = 10000;
         private DAL()
         {
@@ -169,12 +266,6 @@ namespace PowerShare.Models
             }
             return -1;
         }
-
-        internal static int CheckUserExists(object userName)
-        {
-            return 0;
-        }
-
         internal static int UpdateUser(User u)
         {
             throw new NotImplementedException();
