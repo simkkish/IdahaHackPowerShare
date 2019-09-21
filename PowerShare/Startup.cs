@@ -33,6 +33,12 @@ namespace PowerShare
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Add the following to start using a session.
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-2.2
+            services.AddSession(sessOptions => {
+                sessOptions.IdleTimeout = TimeSpan.FromSeconds(100000); 
+                sessOptions.Cookie.HttpOnly = true;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -50,13 +56,13 @@ namespace PowerShare
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
