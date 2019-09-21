@@ -14,5 +14,8 @@
   <ItemGroup>
     <None Include="wwwroot\images\logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
 
 </Project>

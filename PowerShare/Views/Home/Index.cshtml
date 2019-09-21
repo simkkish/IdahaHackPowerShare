@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+@using Microsoft.AspNetCore.Http;
 
 <div class="body">
     <div class="row">
@@ -16,12 +17,13 @@
                     <ul>
                         <li>
                             <header><h1 class="display-3">Sign Up!</h1></header>
+                            <span>@Context.Session.Get("UserName").ToString();</span>
                         </li>
                         <li>
                             <input type="text" class="form-control-lg" name="fName" placeholder="First Name" />
                         </li>
-                            <input type="text" class="form-control-lg" name="mName" placeholder="Middle Name" />
                         <li>
+                        <input type="text" class="form-control-lg" name="mName" placeholder="Middle Name" />
                         </li>
                         <li>
                             <input type="text" class="form-control-lg" name="lName" placeholder="Last Name" />
@@ -46,5 +48,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
