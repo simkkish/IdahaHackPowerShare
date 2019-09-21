@@ -9,6 +9,11 @@ namespace PowerShare.Models
         private static string EditOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
         private static string ReadOnlyConnectionString = "Server=localhost;Database=powershare;Uid=root;Pwd='';Convert Zero Datetime=True;Allow Zero Datetime=True";
 
+        internal static List<role> GetRoles()
+        {
+            throw new NotImplementedException();
+        }
+
         public static string _Pepper = "gLj23Epo084ioAnRfgoaHyskjasf";
         public static int _Stretches = 10000;
         private DAL()
@@ -34,6 +39,17 @@ namespace PowerShare.Models
                 Exception  s = ex;
             }
         }
+
+        internal static List<User> UserGetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static User UserGetByID(int? uid)
+        {
+            throw new NotImplementedException();
+        }
+
         public static int GetIntReader(MySqlCommand comm)
         {
             try
@@ -121,6 +137,15 @@ namespace PowerShare.Models
             return retList;
         }
 
+        internal static int UpdateRole(role role)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static int AddRole(role role)
+        {
+            throw new NotImplementedException();
+        }
 
         public static MySqlDataReader GetDataReader(MySqlCommand comm)
         {

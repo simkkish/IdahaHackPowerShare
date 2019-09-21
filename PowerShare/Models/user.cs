@@ -19,6 +19,8 @@ namespace PowerShare.Models
         protected long _PhoneNumber;
         protected int _karmaPoints;
         protected string _password;
+        private role _Role;
+        private int _RoleID;
 
         #region Database String
         internal const string db_ID = "userID";
@@ -112,6 +114,30 @@ namespace PowerShare.Models
         public override string ToString()
         {
             return this.GetType().ToString();
+        }
+        [XmlIgnore]
+        public role Role
+        {
+            get
+            {
+                if (_Role == null)
+                {
+                    _Role = Roles.Get(_RoleID);//DAL.GetRole(_RoleID);
+                }
+                return _Role;
+            }
+            set
+            {
+                _Role = value;
+                if (value == null)
+                {
+                    _RoleID = -1;
+                }
+                else
+                {
+                    _RoleID = value.ID;
+                }
+            }
         }
     }
 }

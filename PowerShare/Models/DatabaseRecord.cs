@@ -8,18 +8,15 @@ namespace PowerShare.Models
 {
     public abstract class DatabaseRecord
     {
-        private int _ID;
-        [Display(Name ="ID" )]
+        public int _ID;
+        /// <summary>
+        /// The User given Name for the Object.
+        /// </summary>
+        [Display(Name = "ID")]
         public int ID
         {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                _ID = value;
-            }
+            get { return _ID; }
+            set { _ID = value; }
         }
         public abstract int dbSave();
 
