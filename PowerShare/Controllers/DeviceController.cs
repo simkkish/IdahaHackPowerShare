@@ -14,6 +14,7 @@ namespace PowerShare.Controllers
         public IActionResult Index(int? uid)
         {
             User LoggedIn = CurrentUser;
+            //
             if (CurrentUser != null)
             {
                 uid = LoggedIn.UserID;
