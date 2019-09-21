@@ -33,6 +33,12 @@ namespace PowerShare
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Add the following to start using a session.
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-2.2
+            services.AddSession(sessOptions => {
+                sessOptions.IdleTimeout = TimeSpan.FromSeconds(100000); 
+                sessOptions.Cookie.HttpOnly = true;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

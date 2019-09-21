@@ -13,32 +13,29 @@ namespace PowerShare.Models
     {
         protected int _userId;
         protected string _firstName;
-        protected string _middleName;
+        protected string _userName;
         protected string _lastName;
         protected string _emailAddress;
         protected long _PhoneNumber;
         protected int _karmaPoints;
         protected string _password;
-        private role _Role;
-        private int _RoleID;
+        protected string _salt;
+        protected role _role;
+        protected int _roleID;
 
         #region Database String
         internal const string db_ID = "userID";
         internal const string db_FirstName = "firstName";
-        internal const string db_MiddleName = "middleName";
+        internal const string db_UserName = "userName";
         internal const string db_LastName = "lastName";
         internal const string db_EmailAddress = "emailAddress";
-        internal const string db_UserName = "phoneNumber";
-        internal const string db_Salt = "karmaPoints";
+        internal const string db_Salt = "salt";
+        internal const string db_KarmaPoint = "karmapoints";
         internal const string db_Role = "roleID";
         internal const string db_Password = "password";
-        internal const string db_ResetCode = "ResetCode";
         internal const string db_DateCreated = "DateCreated";
         internal const string db_DateModified = "DateModified";
         internal const string db_DateDeleted = "DateDeleted";
-        internal const string db_Archived = "Archived";
-        internal const string db_Enabled = "Enabled";
-        internal const string db_VerificationCode = "VerificationCode";
         #endregion
         public User()
         {
@@ -57,10 +54,20 @@ namespace PowerShare.Models
             get { return _firstName; }
             set { _firstName = value; }
         }
+        public string Salt
+        {
+            get { return _salt; }
+            set { _salt = value; }
+        }
+        public int KarmaPoint
+        {
+            get { return _karmaPoints; }
+            set { _karmaPoints = value; }
+        }
 
-        public string MiddleName {
-            get { return _middleName; }
-            set { _middleName = value; }
+        public string UserName {
+            get { return _userName; }
+            set { _userName = value; }
         }
 
         public string LastName {
@@ -105,10 +112,12 @@ namespace PowerShare.Models
         {
             _userId = dr.GetInt32(db_ID);
             _firstName = dr.GetString(db_FirstName);
-            _middleName = dr.GetString(db_MiddleName);
+            _userName = dr.GetString(db_UserName);
             _lastName = dr.GetString(db_LastName);
             _emailAddress = dr.GetString(db_EmailAddress);
             _password = dr.GetString(db_Password);
+            _salt = dr.GetString(db_Salt);
+            _karmaPoints = dr.GetInt32(db_KarmaPoint);
         }
 
         public override string ToString()
@@ -120,22 +129,22 @@ namespace PowerShare.Models
         {
             get
             {
-                if (_Role == null)
+                if (_roleID == null)
                 {
-                    _Role = Roles.Get(_RoleID);//DAL.GetRole(_RoleID);
+                    _role = Roles.Get(_roleID);
                 }
-                return _Role;
+                return _role;
             }
             set
             {
-                _Role = value;
+                _role = value;
                 if (value == null)
                 {
-                    _RoleID = -1;
+                    _roleID = -1;
                 }
                 else
                 {
-                    _RoleID = value.ID;
+                    _roleID = value.ID;
                 }
             }
         }

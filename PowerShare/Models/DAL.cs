@@ -13,7 +13,6 @@ namespace PowerShare.Models
         {
             throw new NotImplementedException();
         }
-
         public static string _Pepper = "gLj23Epo084ioAnRfgoaHyskjasf";
         public static int _Stretches = 10000;
         private DAL()
@@ -38,6 +37,11 @@ namespace PowerShare.Models
             {
                 Exception  s = ex;
             }
+        }
+
+        internal static User GetUser(string userName, string passWord)
+        {
+            throw new NotImplementedException();
         }
 
         internal static List<User> UserGetAll()
@@ -110,6 +114,37 @@ namespace PowerShare.Models
             }
             return retInt;
         }
+        internal static int AddUser(User obj)
+        {
+            if (obj == null) return -1;
+            MySqlCommand comm = new MySqlCommand("sproc_AddUser");
+            try
+            {
+                // generate new password first.
+                obj.Salt = Tools.Hasher.GenerateSalt(50);
+                string newPass = Tools.Hasher.Get(obj.Password, obj.Salt, _Pepper, _Stretches, 64);
+                obj.Password = newPass;
+                // now set object to Database.
+                comm.Parameters.AddWithValue("@" + User.db_FirstName, obj.FirstName);
+                comm.Parameters.AddWithValue("@" + User.db_UserName, obj.UserName);
+                comm.Parameters.AddWithValue("@" + User.db_LastName, obj.LastName);
+                comm.Parameters.AddWithValue("@" + User.db_EmailAddress, obj.EmailAddress);
+                comm.Parameters.AddWithValue("@" + User.db_Password, obj.Password);
+                comm.Parameters.AddWithValue("@" + User.db_KarmaPoint, obj.KarmaPoint);
+                comm.Parameters.AddWithValue("@" + User.db_Salt, obj.Salt);
+                return AddObject(comm, "@" + User.db_ID);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return -1;
+        }
+
+        internal static int CheckUserExists(object userName)
+        {
+            return 0;
+        }
 
         internal static int UpdateUser(User u)
         {
@@ -138,6 +173,17 @@ namespace PowerShare.Models
             }
             return retInt;
         }
+
+        internal static int UpdateUserPassword(User u)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static User UserGetByUserName(string userName, string emailAddress)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static List<User> GetAllUsers()
         {
             MySqlCommand comm = new MySqlCommand("sproc_UserGetAll");
