@@ -14,11 +14,6 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <None Include="wwwroot\images\logo.png" />
   </ItemGroup>
 
