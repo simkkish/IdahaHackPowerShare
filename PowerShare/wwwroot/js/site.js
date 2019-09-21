@@ -8,7 +8,7 @@ var latlongArray = [new google.maps.LatLng(42.8605, -112.4332),
 new google.maps.LatLng(42.860154, -112.432232)]; 1
 var latlng = new google.maps.LatLng(42.8605, -112.4332);
 var myOptions = {
-    zoom: 15,
+    zoom: 18,
     center: latlng
 };
 map = new google.maps.Map(document.getElementById("map"),
