@@ -197,29 +197,10 @@ namespace PowerShare.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    ex.ToString();
                 }
             }
             return RedirectToAction("Dashboard", "Account");
-        }
-        #endregion
-
-        #region Profile
-        public ActionResult Profile()
-        {
-            int? uid = HttpContext.Session.GetInt32("UserID");
-            int id = 0;
-            if (uid != null)
-            {
-
-                User U = DAL.UserGetByID(uid);
-                return View(U);
-            }
-            else
-            {
-                return RedirectToAction("index", "Home");
-            }
-
         }
         #endregion
     }
