@@ -7,5 +7,6 @@ namespace PowerShare.Models
 {
     public class DAL
     {
+
     }
 }
