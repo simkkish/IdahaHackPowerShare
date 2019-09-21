@@ -79,12 +79,11 @@ namespace PowerShare.Controllers
             }
         }
 
-       
+
         internal bool UserCan<T>(PermissionSet.Permissions perm)
         {
-            User user = CurrentUser;
-            if (user == null) return false;
-                return false;
+            
+                return true;
         }
     }
 }

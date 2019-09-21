@@ -1,66 +1,61 @@
-﻿@model PowerShare.Models.User
-
+﻿@model Tuple<User, List<role>>
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
-
+<h2>Details</h2>
 <div>
     <h4>User</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserID)
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.FirstName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserID)
+        <dd>
+            @Html.DisplayFor(model => model.Item1.FirstName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.MiddleName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
+        <dd>
+            @Html.DisplayFor(model => model.Item1.MiddleName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MiddleName)
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.LastName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MiddleName)
+        <dd>
+            @Html.DisplayFor(model => model.Item1.LastName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+        <dt>
+            @Html.DisplayNameFor(model => model.Item1.EmailAddress)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KarmaPoints)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KarmaPoints)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
+        <dd>
+            @Html.DisplayFor(model => model.Item1.EmailAddress)
         </dd>
     </dl>
+    <div class="form-group">
+        <form asp-action="ChangeRole" asp-controller="Users" method="post">
+            <label>Select Role</label>
+            <select name="Role" class="form-control">
+                @foreach (role role in Model.Item2)
+                {
+                    int ID = role.ID;
+                    string Name = role.Name;
+                    if (Model.Item1.ID == ID)
+                    {
+                        <option value="@ID" selected>@Name</option>
+                    }
+                    else
+                    {
+                        <option value="@ID">@Name</option>
+                    }
+                }
+            </select>
+            <input name="UserID" value="@Model.Item1.ID" type="hidden"/>
+            <input type="submit" value="Change role"  class="btn btn-primary" />
+        </form>
+    </div>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Item1.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

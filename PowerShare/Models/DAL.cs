@@ -47,7 +47,25 @@ namespace PowerShare.Models
 
         internal static User UserGetByID(int? uid)
         {
-            throw new NotImplementedException();
+            MySqlCommand comm = new MySqlCommand("sproc_UserByID");
+            User retObj = null;
+            try
+            {
+                comm.Parameters.AddWithValue("@" + User.db_ID, uid);
+                MySqlDataReader dr = GetDataReader(comm);
+
+                while (dr.Read())
+                {
+                    retObj = new User(dr);
+                }
+                comm.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                comm.Connection.Close();
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return retObj;
         }
 
         public static int GetIntReader(MySqlCommand comm)
@@ -92,6 +110,12 @@ namespace PowerShare.Models
             }
             return retInt;
         }
+
+        internal static int UpdateUser(User u)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static int UpdateObject(MySqlCommand comm)
         {
             int retInt = 0;
@@ -163,6 +187,9 @@ namespace PowerShare.Models
             }
         }
 
-
+        internal static int DeleteUserByID(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

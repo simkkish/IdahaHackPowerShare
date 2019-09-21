@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -12,35 +13,24 @@ using PowerShare.Models;
 
 namespace PowerShare.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         public async Task<IActionResult> Index()
         {
             if (UserCan<User>(PermissionSet.Permissions.ViewAndEdit))
             {
-                int? uid = HttpContext.Session.GetInt32("UserID");
-                Tuple<List<User>, List<User>> Users = null;
+                int? uid = 1;// HttpContext.Session.GetInt32("UserID");
+                User User = null;
                 if (uid != null)
                 {
-                    List<User> AllUsers = null;
-                    List<User> ActiveUsers = null;
-                    List<User> DisabledUsers = null;
                     User U = DAL.UserGetByID(uid);
                     if (U == null)
                     {
                         return NotFound();
                     }
-                    if (U.role.IsAdmin)
-                    {
-                        AllUsers = DAL.UserGetAll();
-                        Users = Tuple.Create(ActiveUsers, DisabledUsers);
-                    }
-                    else
-                    {
-                        Users.Item1.Add(U);
-                    }
+                    User = U;
                 }
-                return View(Users);
+                return View(User);
             }
             else
             {
@@ -54,8 +44,8 @@ namespace PowerShare.Controllers
             if (UserCan<User>(PermissionSet.Permissions.View))
             {
                 User user = DAL.UserGetByID(id);
-                List<Role> Role = DAL.GetRoles();
-                Tuple<User, List<Role>> User = new Tuple<User, List<Role>>(user, Role);
+                List<role> Role = DAL.GetRoles();
+                Tuple<User, List<role>> User = new Tuple<User, List<role>>(user, Role);
                 return View(User);
             }
             else
@@ -81,7 +71,6 @@ namespace PowerShare.Controllers
                         User U = DAL.UserGetByID(id);
                         if (U != null)
                         {
-                            U.Enabled = status == true ? 0 : 1;
                             int i = DAL.UpdateUser(U);
                             if (i > 0)
                             {
@@ -101,7 +90,6 @@ namespace PowerShare.Controllers
                         User U = DAL.UserGetByID(id);
                         if (U != null)
                         {
-                            U.Archived = status == true ? 1 : 0;
                             int i = DAL.UpdateUser(U);
                             if (i > 0)
                             {
@@ -121,7 +109,6 @@ namespace PowerShare.Controllers
                         User U = DAL.UserGetByID(id);
                         if (U != null)
                         {
-                            U.VerificationCode = " ";
                             int i = DAL.UpdateUser(U);
                             if (i > 0)
                             {
@@ -157,8 +144,6 @@ namespace PowerShare.Controllers
                 }
                 else
                 {
-                    U.RoleID = (int)Role;
-                    int i = DAL.UpdateUserRole(U);
                     return RedirectToAction("" + UserID, "User/Details");
                 }
             }
