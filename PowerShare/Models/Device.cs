@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 namespace PowerShare.Models
 {
-    public class DeviceDetails:DatabaseRecord
+    public class Device:DatabaseRecord
     {
         protected int _userID;
         protected string _deviceType;
@@ -22,11 +22,11 @@ namespace PowerShare.Models
         internal const string db_description = "description";
         #endregion
 
-        public DeviceDetails()
+        public Device()
         {
 
         }
-        internal DeviceDetails(MySql.Data.MySqlClient.MySqlDataReader dr)
+        internal Device(MySql.Data.MySqlClient.MySqlDataReader dr)
         {
            Fill(dr);
         }
