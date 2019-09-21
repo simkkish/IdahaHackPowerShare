@@ -39,7 +39,6 @@ namespace PowerShare.Controllers
             ViewBag.Error = "Invalid Username and/or Password";
             ViewBag.User = userName;
             return RedirectToAction("Index", "Home");
-
         }
         public ActionResult Dashboard()
         {
@@ -58,7 +57,6 @@ namespace PowerShare.Controllers
         }
         public IActionResult Logout()
         {
-            //await _signManager.SignOutAsync();
             HttpContext.Session.Clear();
             return RedirectToAction("index", "Home");
         }
@@ -77,15 +75,7 @@ namespace PowerShare.Controllers
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult AddUser(User NewUser)
-        {
-            int check = DAL.CheckUserExists(NewUser.UserName);
-            if (check > 0)
-            {
-                ViewBag.Error = " Username not Unique! Please enter a new username.";
-                return View();
-            }
-            else
-            {
+        {            
                 try
                 {
                     int UserAdd = DAL.AddUser(NewUser);
@@ -102,46 +92,9 @@ namespace PowerShare.Controllers
                 {
                     TempData["UserAddError"] = "Sorry, unexpected Database Error. Please try again later.";
                 }
-            }
             return RedirectToAction("index", "Home");
         }
         #endregion
-        #region Password Reset
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ResetPassword(int? id, [Bind("FirstName,LastName,UserName,Password,ID")] User user)
-        {
-            if (user.ID == id)
-            {
-                User u = DAL.UserGetByID(id);
-                u.FirstName = user.FirstName;
-                u.LastName = u.LastName;
-                u.Password = user.Password;
-                int i = DAL.UpdateUserPassword(u);
-                if (i > 0)
-                {
-                    TempData["Message"] = "User Info Succesfully Modified";
-                    return RedirectToAction("Login");
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            else
-            {
-                TempData["Message"] = "Input ID from system and Form doesnot match!";
-                return NotFound();
-            }
-        }
-        public ActionResult ResetPasswordEmail()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        #endregion
-
         #region Edit Account
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)

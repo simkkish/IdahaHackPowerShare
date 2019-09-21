@@ -79,8 +79,6 @@ namespace PowerShare.Models
         /// Had to expose this attribute so that JSON serialization would work
         /// </summary>
         public byte DAVESet { get => _DAVESet; set => _DAVESet = value; }
-
-
         // Possible DAVE Values
         // 0001 = 1  -                          Edit
         // 0010 = 2  -                  View
@@ -97,8 +95,6 @@ namespace PowerShare.Models
         // 1101 = 13 - Delete	 Add	        Edit
         // 1110 = 14 - Delete	 Add	 View
         // 1111 = 15 - Delete	 Add	 View	Edit
-
-
         public bool IsolateBit(byte value, Permissions pm)
         {
             //if (pm == Permissions.Edit) {

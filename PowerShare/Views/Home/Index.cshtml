@@ -1,46 +1,44 @@
-﻿@using PowerShare.Models
-@model LoginModel
-@{
+﻿@{
     ViewData["Title"] = "Home";
 }
+@using Microsoft.AspNetCore.Http;
 
 <div class="body">
     <div class="row">
         <div class="col-6">
             <div class="jumbotron info float-right">
-                @TempData["Error"]
                 <p><h1 class="display-4">Connect with PowerShare.</h1></p>
                 <p><span class="slogan">Charging the world!</span></p>
             </div>
         </div>
         <div class="col-6">
             <div class="loginForm">
-                <form asp-action="AddUser" asp-controller="Account" method="post">
+                <form action="" method="post">
                     <ul>
                         <li>
                             <header><h1 class="display-3">Sign Up!</h1></header>
+                            <span>@Context.Session.Get("UserName");</span>
                         </li>
                         <li>
-                            <input type="text" class="form-control-lg" id="FirstName " name="FirstName" placeholder="First Name" />
+                            <input type="text" class="form-control-lg" name="fName" placeholder="First Name" />
                         </li>
                         <li>
-                            <input type="text" class="form-control-lg" id="LastName" name="LastName" placeholder="Last Name" />
+                        <input type="text" class="form-control-lg" name="mName" placeholder="Middle Name" />
                         </li>
                         <li>
-                            <input type="text" class="form-control-lg" id="UserName" name="UserName" placeholder="UserName" />
-                        </li>
-
-                        <li>
-                            <input type="email" class="form-control-lg" id="EmailAddress" name="EmailAddress" placeholder="Email" />
+                            <input type="text" class="form-control-lg" name="lName" placeholder="Last Name" />
                         </li>
                         <li>
-                            <input type="number" class="form-control-lg" id="PhoneNumber" name="PhoneNumber" placeholder="Phone Number" />
+                            <input type="email" class="form-control-lg" name="email" placeholder="Email" />
                         </li>
                         <li>
-                            <input type="password" class="form-control-lg" id="Password" name="Password" placeholder="Password" />
+                            <input type="number" class="form-control-lg" name="phoneNumber" placeholder="Phone Number" />
                         </li>
                         <li>
-                            <input type="password" class="form-control-lg" id="ConfirmPassword" name="ConfirmPassword" placeholder="Verify Password" />
+                            <input type="password" class="form-control-lg" name="password" placeholder="Password" />
+                        </li>
+                        <li>
+                            <input type="password" class="form-control-lg" name="password" placeholder="Verify Password" />
                         </li>
                         <li>
                             <button type="submit" class="btn btn-primary">Sign Up</button>

@@ -15,8 +15,6 @@ namespace PowerShare.Controllers
     {
         public BaseController()
         {
-            //User u = await CurrentUser();
-            //ViewBag.CurrentUser = u;
         }
 
         public string Get(string key)
@@ -48,14 +46,6 @@ namespace PowerShare.Controllers
             get
             {
                 User u = Get<User>("CurrentUser");
-                //if (u == null) u = new User()
-                //{
-                //    FirstName = "Anony",
-                //    Role = new role()
-                //    {
-                //        Name = "Anonymous",
-                //    }
-                //};
                 return u;
             }
             set
@@ -78,12 +68,16 @@ namespace PowerShare.Controllers
                 Set("LoggedInUser", value);
             }
         }
-
-
         internal bool UserCan<T>(PermissionSet.Permissions perm)
         {
-            
-                return true;
+            User user = CurrentUser;
+            if (user == null) return false;
+          if (typeof(T) == typeof(User))
+            {
+                return user.Role.Users >= perm;
+            }
+            else
+                return false;
         }
     }
 }

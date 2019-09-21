@@ -21,18 +21,13 @@ namespace PowerShare.Models
 
         #region private variable
         private string _FirstName;
-        private string _MiddleName;
         private string _LastName;
         private string _EmailAddress;
         private string _Address;
         private string _UserName;
         private string _Password;
         private string _ConfirmPassword;
-        private bool _IsEmailConfirmed = false;
-        private DateTime _DateCreated;
         private string _Salt;
-        private string _DirectoryPath;
-
         #endregion
 
         #region Database String
@@ -55,11 +50,6 @@ namespace PowerShare.Models
         {
             get { return _FirstName; }
             set { _FirstName = value; }
-        }
-        public string MiddleName
-        {
-            get { return _MiddleName; }
-            set { _MiddleName = value; }
         }
         [Required]
         public string LastName
@@ -103,11 +93,6 @@ namespace PowerShare.Models
             get { return _ConfirmPassword; }
             set { _ConfirmPassword = value; }
         }
-        public DateTime DateCreated
-        {
-            get { return _DateCreated; }
-            set { _DateCreated = value; }
-        }
         /// <summary>
         /// Gets or sets the Salt for this PeerVal.User object
         /// </summary>
@@ -150,7 +135,6 @@ namespace PowerShare.Models
         {
             _ID = dr.GetInt32(db_ID);
             _FirstName = dr.GetString(db_FirstName);
-            _MiddleName = dr.GetString(db_MiddleName);
             _LastName = dr.GetString(db_LastName);
             _EmailAddress = dr.GetString(db_EmailAddress);
             _UserName = dr.GetString(db_UserName);
