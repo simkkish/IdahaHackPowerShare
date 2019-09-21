@@ -5,11 +5,13 @@
 
 var map;
 var latlongArray = [new google.maps.LatLng(42.8605, -112.4332),
-new google.maps.LatLng(42.860154, -112.432232)]; 1
-var latlng = new google.maps.LatLng(42.8605, -112.4332);
+new google.maps.LatLng(42.860154, -112.432232),
+    new google.maps.LatLng(42.830860, -112.431000),
+new google.maps.LatLng(42.866550, -112.443527)];
+var center = new google.maps.LatLng(42.857100, -112.434840);
 var myOptions = {
-    zoom: 18,
-    center: latlng
+    zoom: 12,
+    center: center
 };
 map = new google.maps.Map(document.getElementById("map"),
     myOptions);
@@ -17,14 +19,14 @@ google.maps.event.addDomListener(window, "load");
 
 var searchKeyWord = document.getElementById("keyword");
 var searchButton = document.getElementById("search");
-var toogleButton = document.getElementsByClassName("switch");
+//var toogleButton = document.getElementsByClassName("switch");
 
 var searchBox = new google.maps.places.SearchBox(searchKeyWord);
 
 map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchKeyWord);
 map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchButton);
 
-map.controls[google.maps.ControlPosition.TOP_CENTER].push(toogleButton);
+//map.controls[google.maps.ControlPosition.TOP_CENTER].push(toogleButton);
 
 
 searchButton.onclick = function () {
@@ -36,29 +38,29 @@ var markers = [];
 // Listen for the event fired when the user selects a prediction and retrieve
 // more details for that place.
 
-var switchStatus = false;
-$("#togBtn").on('change', function () {
-    if ($(this).is(':checked')) {
-        switchStatus = $(this).is(':checked');
-        //alert(switchStatus);// To verify
-        
-            markers.setVisible(true);
-        
+//var switchStatus = false;
+//$("#togBtn").on('change', function () {
+//    if ($(this).is(':checked')) {
+//        switchStatus = $(this).is(':checked');
+//        //alert(switchStatus);// To verify
+//        for (var i = 0; i < markers.length; i++) {
+//            markers[i].setVisible(true);
+//        }
             
             
 
        
 
-    }
-    else {
-        switchStatus = $(this).is(':checked');
+//    }
+//    else {
+//        switchStatus = $(this).is(':checked');
         
+//        for (var i = 0; i < markers.length; i++) {
+//            markers[i].setVisible(false);
+//        }
        
-            markers.setVisible(false);
-        
-       
-    }
-});
+//    }
+//});
 searchBox.addListener('places_changed', function () {
     var places = searchBox.getPlaces();
 
@@ -112,3 +114,19 @@ for (var i = 0; i < latlongArray.length; i++) {
     });
     marker.setMap(map);
 }
+
+//var startPos;
+//var currentLat;
+//var currentLon;
+//var geoSuccess = function (position) {
+//    startPos = position;
+//    currentLat = startPos.coords.latitude;
+//    currentLon = startPos.coords.longitude;
+//};
+//navigator.geolocation.getCurrentPosition(geoSuccess);
+
+//var latlng;
+
+//if (currentLat !== null && currentLon !== null) {
+//    latlng = new google.maps.LatLng(parseFloat(currentLat), parseFloat(currentLon));
+//}
