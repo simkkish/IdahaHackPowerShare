@@ -1,5 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    ViewData["Title"] = "AddItem";
 }
+<h1>Add Item</h1>
+<form action="">
+    <ul>
+        <li>
+            Type of the Item:
+            <input type="text" name="deviceType" />
+        </li>
+        <li>
+            Name of the device:
+            <input type="text" name="deviceName" />
+        </li>
+        <li>
+            Charger Type:
+            <input type="text" name="chargerType"/>
+        </li>
+        <input type="submit" value="Submit">
+    </ul>
+</form> 
